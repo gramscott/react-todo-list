@@ -14,21 +14,29 @@ function App() {
   const [newTodoPriority, setNewTodoPriority] = useState("low");
 
 
-const todoNodes = todoList.map((todo, index) => {
-  // console.log("Current todo:", todo);
-  // console.log("Current index:", index);
-
-  return (
-    <li key={index} className={todo.priority === "high" ? "High" : "Low"}>
-      <span>{todo.name}</span>
-      {todo.priority === "high" ? (
-        <span className="High">High</span>
-      ) : (
-        <button onClick={() => prioritizeTodo(index)}>Low</button>
-      )}
-    </li>
-  );
-});
+  const todoNodes = todoList.map((todo, index) => {
+    return (
+      <li key={index} className={`Todo ${todo.priority === "high" ? "High" : "Low"}`}>
+        <span>{todo.name}</span>
+        {todo.priority === "high" ? (
+          <span>
+            <span className="High">High</span>
+            <button className="RevertButton" onClick={() => revertPriority(index)}>Not So High?</button>
+          </span>
+        ) : (
+          <button className="Low" onClick={() => prioritizeTodo(index)}>Low</button>
+        )}
+        <button className="Delete" onClick={() => deleteTodo(index)}>Delete</button>
+      </li>
+    );
+  });
+  
+  const revertPriority = (index) => {
+    const copyTodoList = [...todoList];
+    copyTodoList[index].priority = "low";
+    setTodoList(copyTodoList);
+  };
+  
 
 
 const prioritizeTodo = (index) => {
@@ -39,15 +47,19 @@ const prioritizeTodo = (index) => {
 
   const updatedTodoList = { ...copyTodoList[index] };
   // console.log("Updated Todo List Object:", updatedTodoList);
-
   updatedTodoList.priority = "high";
   // console.log("Modified Todo List Object:", updatedTodoList);
-
   copyTodoList[index] = updatedTodoList;
   // console.log("Modified Copy Todo List:", copyTodoList);
 
   setTodoList(copyTodoList);
   // console.log("Updated Todo List:", todoList);
+};
+
+const deleteTodo = (index) => {
+  const copyTodoList = [...todoList];
+  copyTodoList.splice(index, 1);
+  setTodoList(copyTodoList);
 };
 
 
@@ -64,24 +76,19 @@ const prioritizeTodo = (index) => {
   const saveNewTodo = (event) => {
     event.preventDefault();
     // console.log("Current todo list:", todoList);
-  
     const copyTodoList = [...todoList];
     // console.log("Copied todo list:", copyTodoList);
-  
     const newTodoItem = { name: newTodo, priority: newTodoPriority };
     // console.log("New todo item:", newTodoItem);
-  
     copyTodoList.push(newTodoItem);
     // console.log("Modified todo list:", copyTodoList);
-  
     setTodoList(copyTodoList);
     // console.log("Updated todo list:", todoList);
-  
     setNewTodo("");
     // console.log("Cleared new todo:", newTodo);
   };
 
-  
+
   return (
     <div className="App">
       <h1>ToDo's</h1>
@@ -101,7 +108,7 @@ const prioritizeTodo = (index) => {
         <input type="submit" value="Save Item" />
       </form>
 
-      <ol>{todoNodes}</ol>
+      <ul>{todoNodes}</ul>
     </div>
   );
 }

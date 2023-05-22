@@ -1,0 +1,104 @@
+/* App.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  
+  .App {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-top: 0;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input[type="radio"] {
+    margin-right: 4px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .Todo {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    margin-bottom: 8px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+  
+  .Todo span {
+    flex-grow: 1;
+    margin-right: 8px;
+  }
+  
+  .High {
+    font-weight: bold;
+    color: red;
+  }
+  
+  .High .RevertButton {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    margin-left: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .Low {
+    font-weight: normal;
+    color: green;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    margin-left: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .Delete {
+    background-color: #f44336;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+  }
+  
